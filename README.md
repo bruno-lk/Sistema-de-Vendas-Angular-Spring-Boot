@@ -1,6 +1,6 @@
-# Angular 9 + Spring Boot 2.2: Fullstack
+# Sistema de vendas e serviços
 
-## FullStack Angular + Spring Boot
+## Full Stack Angular 9 + Spring Boot 2.2
 
 Código da aplicação desenvolvida no curso de full stack utilizando Angular e Spring Boot
 
