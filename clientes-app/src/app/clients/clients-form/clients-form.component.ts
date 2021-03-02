@@ -1,5 +1,6 @@
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { ClientsService } from 'src/app/clients.service';
 
 import { Client } from '../clients';
 
@@ -11,8 +12,8 @@ import { Client } from '../clients';
 export class ClientsFormComponent implements OnInit {
   client: Client;
 
-  constructor() {
-    this.client = new Client();
+  constructor(private service: ClientsService) {
+    this.client = service.getClient();
   }
 
   ngOnInit(): void {}
