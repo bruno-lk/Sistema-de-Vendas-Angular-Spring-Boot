@@ -10,6 +10,7 @@ import { Client } from '../clients';
 })
 export class ClientsListComponent implements OnInit {
   clientsList: Client[] = [];
+  clientSelected: Client;
 
   constructor(private service: ClientsService, private router: Router) {}
 
@@ -21,5 +22,9 @@ export class ClientsListComponent implements OnInit {
 
   newRegister(){
     this.router.navigate(['/clients-form'])
+  }
+
+  onDelete(client: Client){
+    this.clientSelected = client
   }
 }
