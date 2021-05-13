@@ -11,6 +11,8 @@ import { Client } from '../clients';
 export class ClientsListComponent implements OnInit {
   clientsList: Client[] = [];
   clientSelected: Client;
+  successString: String;
+  errorString: String
 
   constructor(private service: ClientsService, private router: Router) {}
 
@@ -26,5 +28,18 @@ export class ClientsListComponent implements OnInit {
 
   onDelete(client: Client){
     this.clientSelected = client
+  }
+
+  deleteClient(client: Client){
+    this.service
+    .deleteClient(this.clientSelected)
+    .subscribe(
+      response => {
+        this.successString = "Clinte removido com sucesso";
+        this.ngOnInit();
+      },
+      error => this.errorString = "Ocorreu um erro ao remover cliente"
+    )
+
   }
 }
