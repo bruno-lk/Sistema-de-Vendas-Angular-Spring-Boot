@@ -13,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/render-services")
@@ -33,7 +33,7 @@ public class RenderServiceController {
 
         Client client = clientRepository
                 .findById(idCliente)
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cliente inexistente"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cliente inexistente"));
 
         renderService.setDescription(dto.getDescription());
         renderService.setDate(date);
@@ -41,5 +41,13 @@ public class RenderServiceController {
         renderService.setValue(bigDecimalConverter.converter(dto.getValue()));
 
         return renderServiceRepository.save(renderService);
+    }
+
+    @GetMapping
+    public List<RenderService> search(
+            @RequestParam(value = "name", required = false, defaultValue = "") String name,
+            @RequestParam(value = "month", required = false) Integer month
+    ) {
+        return renderServiceRepository.findByClientNameAndMonth("%" + name + "%", month);
     }
 }
