@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientsService } from 'src/app/clients.service';
+import { Client } from 'src/app/clients/clients';
+import { RenderService } from '../RenderService';
 
 @Component({
   selector: 'app-render-service-form',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RenderServiceFormComponent implements OnInit {
 
-  constructor() { }
+  clientsList: Client[] = [];
+  service:RenderService;
+
+  constructor(
+    private clientsService: ClientsService
+  ) {
+    this.service = new RenderService()
+  }
 
   ngOnInit(): void {
+    this.clientsService
+      .getClients()
+      .subscribe(response => this.clientsList = response)
+    }
+
+  onSubmit(){
+    console.log(this.service)
   }
 
 }
