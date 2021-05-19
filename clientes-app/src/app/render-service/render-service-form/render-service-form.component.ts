@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientsService } from 'src/app/clients.service';
 import { Client } from 'src/app/clients/clients';
+import { RenderServiceService } from 'src/app/render-service.service';
 import { RenderService } from '../RenderService';
 
 @Component({
@@ -14,7 +15,8 @@ export class RenderServiceFormComponent implements OnInit {
   service:RenderService;
 
   constructor(
-    private clientsService: ClientsService
+    private clientsService: ClientsService,
+    private renderServiceService: RenderServiceService
   ) {
     this.service = new RenderService()
   }
@@ -26,7 +28,9 @@ export class RenderServiceFormComponent implements OnInit {
     }
 
   onSubmit(){
-    console.log(this.service)
+    this.renderServiceService
+      .save(this.service)
+      .subscribe(response => console.log(response))
   }
 
 }
