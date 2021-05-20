@@ -13,6 +13,8 @@ export class RenderServiceFormComponent implements OnInit {
 
   clientsList: Client[] = [];
   service:RenderService;
+  success: Boolean = false;
+  errors: String[];
 
   constructor(
     private clientsService: ClientsService,
@@ -30,7 +32,17 @@ export class RenderServiceFormComponent implements OnInit {
   onSubmit(){
     this.renderServiceService
       .save(this.service)
-      .subscribe(response => console.log(response))
+      .subscribe(
+        (response) => {
+          this.success = true;
+          this.errors = null;
+          this.service = new RenderService();
+        },
+        (errorResponse) => {
+          this.success = false;
+          this.errors = errorResponse.error.errors;
+        }
+      );
   }
 
 }

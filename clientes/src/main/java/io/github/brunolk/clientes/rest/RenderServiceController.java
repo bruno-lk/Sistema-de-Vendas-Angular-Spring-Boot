@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -26,7 +27,7 @@ public class RenderServiceController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public RenderService save( @RequestBody RenderServiceDTO dto ){
+    public RenderService save( @RequestBody @Valid RenderServiceDTO dto ){
         RenderService renderService = new RenderService();
         LocalDate date = LocalDate.parse(dto.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         Integer idCliente = dto.getIdClient();
