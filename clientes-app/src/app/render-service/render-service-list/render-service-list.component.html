@@ -1,1 +1,33 @@
-<p>render-service-list works!</p>
+<h1 class="mt-4">CLIENTES</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Consulta</li>
+</ol>
+
+<div class="container">
+  <form #searchForm="ngForm" (submit)="search()">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="inputName">Nome do cliente:</label>
+        <input type="text" class="form-control" name="name" id="inputName" [(ngModel)]="name">
+      </div>
+
+      <div class="col-md-6">
+        <label for="selectMonth">Mês:</label>
+        <select [(ngModel)]="month" class="form-control" name="month" id="selectMonth">
+          <option value="">Selecionar...</option>
+          <option *ngFor="let month of months" [value]="month">
+            {{month}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-md-3"><button type="submit" class="btn btn-primary">
+        <i class="fa fa-search"></i>
+        Pesquisar
+      </button></div>
+    </div>
+  </form>
+</div>
