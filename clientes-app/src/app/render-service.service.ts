@@ -22,11 +22,9 @@ export class RenderServiceService {
 
   search(name:string, month:number) : Observable<RenderServiceSearch[]> {
     const httpParams = new HttpParams()
-      .set("name", name)
-      .set("month", month.toString())
+      .set("name", name? name : '')
+      .set("month", month ? month.toString() : '')
     const url = this.apiURL + "?" + httpParams.toString()
-
-    console.log(url)
 
     return this.http.get<any>(url)
   }

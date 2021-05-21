@@ -12,7 +12,8 @@ export class RenderServiceListComponent implements OnInit {
   name:string
   month:number
   months:number[]
-  list:RenderServiceSearch[];
+  list:RenderServiceSearch[]
+  message:string
 
   constructor(
     private service: RenderServiceService
@@ -24,7 +25,17 @@ export class RenderServiceListComponent implements OnInit {
   }
 
   search(){
-    this.service.search(this.name, this.month)
+    this.service
+      .search(this.name, this.month)
+      .subscribe(response => {
+        this.list = response
+        
+        if(this.list.length <= 0){
+          this.message = "Nenhum registro encontrado"
+        }else{
+          this.message = null
+        }
+      })
   }
 
 }
