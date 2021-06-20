@@ -9,12 +9,15 @@ import { HomeComponent } from './home/home.component';
 import { ClientsModule } from './clients/clients.module';
 import { ClientsService } from './clients.service';
 import { RenderServiceModule } from './render-service/render-service.module';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     TemplateModule,
     ClientsModule,
