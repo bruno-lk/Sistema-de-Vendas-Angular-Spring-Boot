@@ -23,7 +23,7 @@ export class ClientsListComponent implements OnInit {
   }
 
   newRegister(){
-    this.router.navigate(['/clients-form'])
+    this.router.navigate(['/clientes/form'])
   }
 
   onDelete(client: Client){
