@@ -1,6 +1,6 @@
 vendas
 basico-angular
 .idea/
-target/
+**/target
 
 *.class
