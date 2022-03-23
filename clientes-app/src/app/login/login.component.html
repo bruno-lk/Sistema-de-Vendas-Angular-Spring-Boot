@@ -18,8 +18,8 @@
               </div>
 
               <div class="card-body">
-                <div class="alert alert-danger" *ngIf="loginError">
-                  Login ou senha incorretos
+                <div class="alert alert-danger" *ngFor="let error of errors">
+                  {{ error }}
                 </div>
 
                 <form #loginForm="ngForm" (submit)="onSubmit()">
