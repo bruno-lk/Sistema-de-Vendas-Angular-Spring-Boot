@@ -44,7 +44,10 @@ export class LoginComponent {
     this.authService.save(user)
       .subscribe( response => {
         this.msgSuccess = "Cadastro realizado com sucesso! Efetue o login";
-        this.errors = null;
+        this.cadastrando = false
+        this.username = ''
+        this.password = ''
+        this.errors = [];
       },
       errorResponse =>{
         this.msgSuccess = null;
