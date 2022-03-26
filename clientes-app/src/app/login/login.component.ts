@@ -22,8 +22,13 @@ export class LoginComponent {
   ) { }
 
   onSubmit(){
-    console.log(`User: ${this.username}, Pass: ${this.password}`)
-    this.router.navigate(["/home"])
+    this.authService
+      .tryLogin(this.username, this.password)
+      .subscribe(response => {
+        this.router.navigate(["/home"])
+      }, errorResponse => {
+        this.errors = ['Usuario e/ou senha incorreto(s).']
+      })
   }
 
   preparaCadastro(event){
